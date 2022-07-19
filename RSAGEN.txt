@@ -1,0 +1,28 @@
+#Generate prime numbers
+r=int(random()*(2**512))
+p=next_prime(r)
+r=int(random()*(2**512))
+q=next_prime(r)
+
+#RSA modulus
+n=p*q
+print(n)
+
+#Choose public exponent e
+e=65537
+phi=(p-1)*(q-1)
+
+#compute e^(-1) mod phi
+d=e.powermod(-1,phi)
+print("Public-key=(",e,",",n,")")
+print("Private-key=(",d,",",n,")")
+
+#Plaintext
+m=12345
+
+#RSA encryption
+c=m.powermod(e,n)
+
+#RSA decryption
+mprime=c.powermod(d,n)
+print("mprime=",mprime)
