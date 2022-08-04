@@ -29,12 +29,8 @@ BIGNUM* XEuclid(BIGNUM* x, BIGNUM* y, const BIGNUM* a, const BIGNUM* b)
 	while(BN_cmp(bs,zero))
 	{
 		BIGNUM *res = BN_new();
-		// bs, as -> as=bs, bs=r
-
-		// dv = a/d, rem = a%d
-		// div = dv, rem, a, d, ctx
-		BN_div(q, bs, as, bs, ctx);
 		BN_copy(res, bs);
+		BN_div(q, bs, as, bs, ctx);
 		BN_copy(as, res);
 		
 		BN_mul(res, q, x1, ctx);
