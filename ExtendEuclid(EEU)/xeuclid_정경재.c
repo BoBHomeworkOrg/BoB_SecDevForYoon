@@ -20,13 +20,10 @@ BIGNUM* XEuclid(BIGNUM* x, BIGNUM* y, const BIGNUM* a, const BIGNUM* b)
 
 	BIGNUM* as = BN_dup(a); BIGNUM* bs = BN_dup(b);
 	
-	BN_dec2bn(&x0,"1"); BN_dec2bn(&x1,"0");
-	BN_dec2bn(&y0,"0"); BN_dec2bn(&y1,"1");
-	
-	BIGNUM* zero = BN_new();
-	BN_zero(zero);
+	BN_one(x0); BN_zero(x1);
+	BN_zero(y0); BN_one(y1);
 
-	while(BN_cmp(bs,zero))
+	while(!BN_is_zero(bs))
 	{
 		BIGNUM *res = BN_new();
 		BN_copy(res, bs);
